@@ -4,9 +4,7 @@ import {
   IUserRepository,
   UserRepositoryToken,
 } from '@app/user/infrastructure/repository/user/i.user.repository';
-import { UserAccount } from '@app/user/domain/user-account';
-import { User } from '@app/user/domain/user';
-import { CreateUserDto } from '@lib/shared';
+import { EventPattern, Payload, Transport } from '@nestjs/microservices';
 
 @Injectable()
 export class CreateUserHandler {
@@ -16,11 +14,13 @@ export class CreateUserHandler {
   ) {}
 
   @Transactional()
-  async execute(dto: CreateUserDto) {
-    const userAccount = UserAccount.empty();
-    const userId = await this.userRepository.insertUserId(userAccount);
-    // * user 객체 생성
-    const user = User.create(userId, dto);
-    await this.userRepository.upsert(user);
+  @EventPattern('create-user', Transport.KAFKA)
+  async execute(@Payload() payload: string) {
+    console.log(JSON.parse(payload));
+    // const userAccount = UserAccount.empty();
+    // const userId = await this.userRepository.insertUserId(userAccount);
+    // // * user 객체 생성
+    // const user = User.create(userId, dto);
+    // await this.userRepository.upsert(user);
   }
 }

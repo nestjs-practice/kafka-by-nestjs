@@ -18,7 +18,7 @@ export const ormConfig: TypeOrmModuleAsyncOptions = {
       console.info('Sync TypeORM');
       obj = Object.assign(obj, {
         synchronize: true,
-        logging: true,
+        logging: false,
       });
     }
     return obj;

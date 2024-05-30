@@ -12,11 +12,13 @@ import { UserAccountEntity } from '@app/user/infrastructure/entity/user-account.
 import { UserInfoEntity } from '@app/user/infrastructure/entity/user-info.entity';
 import { UserSettingEntity } from '@app/user/infrastructure/entity/user-setting.entity';
 import { UserAnalyticsEntity } from '@app/user/infrastructure/entity/user-analytics.entity';
+import { CreateUserHandler } from '@app/user/application/commands/create-user/create-user.handler';
 
 const controllers: Type[] = [UserController];
 
 const applications: Provider[] = [
   /** Command **/
+  CreateUserHandler,
 ];
 
 const interfaces: Provider[] = [];
