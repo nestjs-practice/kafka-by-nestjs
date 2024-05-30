@@ -1,5 +1,5 @@
 import { BaseObject } from '@lib/type';
-import { CreateBoardArticleDto } from '@lib/shared/board/create-board-article.dto';
+import { CreateBoardArticleDto } from '@lib/shared/board/dto/create-board-article.dto';
 
 type Props = {
   id?: number;

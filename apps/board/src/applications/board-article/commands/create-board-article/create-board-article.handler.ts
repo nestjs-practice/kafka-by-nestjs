@@ -4,9 +4,9 @@ import {
 } from '@app/board/infrastructure/repositories/board-article/i.board-article.repository';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
-import { CreateBoardArticleDto } from '@lib/shared/board/create-board-article.dto';
+import { CreateBoardArticleDto } from '@lib/shared/board/dto/create-board-article.dto';
 import { BoardArticle } from '@app/board/domain/board-article';
-import { BoardArticleEvent } from '@app/board/applications/board-article/commands/create-board-article/events/create-board-article.event';
+import { BoardArticleEvent } from '@lib/shared/board/events/create-board-article.event';
 
 @Injectable()
 export class CreateBoardArticleHandler {
