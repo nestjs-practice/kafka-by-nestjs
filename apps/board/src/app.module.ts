@@ -17,4 +17,4 @@ import { ormConfig } from '@lib/config';
   controllers: [],
   providers: [],
 })
-export class BoardModule {}
+export class AppModule {}

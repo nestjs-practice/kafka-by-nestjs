@@ -8,8 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
-    "start": "nest start user && nest start board && nest start api-gateway ",
-    "start:dev": "cross-env NODE_ENV=development nest start --watch",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/kafka-by-nestjs/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

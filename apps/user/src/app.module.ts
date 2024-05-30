@@ -53,4 +53,4 @@ const events: Provider[] = [];
   controllers: [...controllers],
   exports: [...interfaces],
 })
-export class UserModule {}
+export class AppModule {}

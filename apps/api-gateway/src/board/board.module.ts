@@ -10,7 +10,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           client: {
             clientId: 'board',
-            brokers: ['host.docker.internal:9092'],
+            brokers: ['localhost:9092'],
           },
           consumer: {
             groupId: 'board-consumer',
