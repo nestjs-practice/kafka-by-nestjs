@@ -30,6 +30,5 @@ import { UserService } from '@api-gateway/user/controller/user.service';
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService],
 })
 export class UserModule {}

@@ -1,4 +1,3 @@
-import { UserController } from '@api-gateway/user/controller/user.controller';
 import { Module, Provider, Type } from '@nestjs/common';
 import { UserRepositoryToken } from '@app/user/infrastructure/repository/user/i.user.repository';
 import { UserRepository } from '@app/user/infrastructure/repository/user/user.repository';
@@ -14,7 +13,7 @@ import { UserSettingEntity } from '@app/user/infrastructure/entity/user-setting.
 import { UserAnalyticsEntity } from '@app/user/infrastructure/entity/user-analytics.entity';
 import { CreateUserHandler } from '@app/user/application/commands/create-user/create-user.handler';
 
-const controllers: Type[] = [UserController];
+const controllers: Type[] = [];
 
 const applications: Provider[] = [
   /** Command **/
