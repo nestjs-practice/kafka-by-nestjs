@@ -29,35 +29,44 @@
       "@/*": [
         "src/*"
       ],
-      "@app/config": [
+      "@lib/config": [
         "libs/config/src"
       ],
-      "@app/config/*": [
+      "@lib/config/*": [
         "libs/config/src/*"
       ],
-      "@app/database": [
+      "@lib/database": [
         "libs/database/src"
       ],
-      "@app/database/*": [
+      "@lib/database/*": [
         "libs/database/src/*"
       ],
-      "@app/type": [
+      "@lib/type": [
         "libs/type/src"
       ],
-      "@app/type/*": [
+      "@lib/type/*": [
         "libs/type/src/*"
       ],
-      "@app/util": [
+      "@lib/util": [
         "libs/util/src"
       ],
-      "@app/util/*": [
+      "@lib/util/*": [
         "libs/util/src/*"
       ],
-      "@app/shared": [
+      "@lib/shared": [
         "libs/shared/src"
       ],
-      "@app/shared/*": [
+      "@lib/shared/*": [
         "libs/shared/src/*"
+      ],
+      "@api-gateway/*": [
+        "apps/api-gateway/src/*"
+      ],
+      "@app/user/*": [
+        "apps/user/src/*"
+      ],
+      "@app/board/*": [
+        "apps/board/src/*"
       ]
     }
   }

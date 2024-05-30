@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { BoardModule } from './board/board.module';
+import { BoardModule } from '@api-gateway/board/board.module';
+import { UserModule } from '@api-gateway/user/user.module';
 
 @Module({
   imports: [UserModule, BoardModule],
