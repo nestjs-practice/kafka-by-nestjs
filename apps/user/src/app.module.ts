@@ -49,9 +49,24 @@ const events: Provider[] = [];
       UserSettingEntity,
       UserAnalyticsEntity,
     ]),
+    // ClientsModule.register([
+    //   {
+    //     name: 'USER_MICROSERVICE',
+    //     transport: Transport.KAFKA,
+    //     options: {
+    //       client: {
+    //         clientId: 'user',
+    //         brokers: ['localhost:9092'],
+    //       },
+    //       consumer: {
+    //         groupId: 'user-consumer',
+    //       },
+    //     },
+    //   },
+    // ]),
   ],
-  providers: [...applications, ...repositories, ...events, ...interfaces],
   controllers: [...controllers],
+  providers: [...applications, ...repositories, ...events, ...interfaces],
   exports: [...interfaces],
 })
 export class AppModule {}

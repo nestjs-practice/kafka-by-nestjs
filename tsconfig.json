@@ -59,7 +59,13 @@
       "@lib/shared/*": [
         "libs/shared/src/*"
       ],
-      "@api-gateway/*": [
+      "@lib/middleware": [
+        "libs/middleware/src"
+      ],
+      "@lib/middleware/*": [
+        "libs/middleware/src/*"
+      ],
+      "@app/api-gateway/*": [
         "apps/api-gateway/src/*"
       ],
       "@app/user/*": [
@@ -67,7 +73,7 @@
       ],
       "@app/board/*": [
         "apps/board/src/*"
-      ]
+      ],
     }
   }
 }

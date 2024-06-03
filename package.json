@@ -87,7 +87,8 @@
       "^@app/database(|/.*)$": "<rootDir>/libs/database/src/$1",
       "^@app/type(|/.*)$": "<rootDir>/libs/type/src/$1",
       "^@app/util(|/.*)$": "<rootDir>/libs/util/src/$1",
-      "^@app/shared(|/.*)$": "<rootDir>/libs/shared/src/$1"
+      "^@app/shared(|/.*)$": "<rootDir>/libs/shared/src/$1",
+      "^@app/middleware(|/.*)$": "<rootDir>/libs/middleware/src/$1"
     }
   }
 }
