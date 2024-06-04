@@ -10,7 +10,6 @@ import { ormConfig } from '@lib/config';
 import { UserAccountEntity } from '@app/user/infrastructure/entity/user-account.entity';
 import { UserInfoEntity } from '@app/user/infrastructure/entity/user-info.entity';
 import { UserSettingEntity } from '@app/user/infrastructure/entity/user-setting.entity';
-import { UserAnalyticsEntity } from '@app/user/infrastructure/entity/user-analytics.entity';
 import { CreateUserHandler } from '@app/user/application/commands/create-user/create-user.handler';
 import { AppController } from '@app/user/interfaces/controller/app.controller';
 import { LoggerMiddleware } from '@lib/middleware';
@@ -45,12 +44,7 @@ const events: Provider[] = [];
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync(ormConfig),
-    TypeOrmModule.forFeature([
-      UserAccountEntity,
-      UserInfoEntity,
-      UserSettingEntity,
-      UserAnalyticsEntity,
-    ]),
+    TypeOrmModule.forFeature([UserAccountEntity, UserInfoEntity, UserSettingEntity]),
   ],
   controllers: [...controllers],
   providers: [...applications, ...repositories, ...events, ...interfaces],

@@ -90,6 +90,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/middleware/tsconfig.lib.json"
       }
+    },
+    "analytics": {
+      "type": "application",
+      "root": "apps/analytics",
+      "entryFile": "main",
+      "sourceRoot": "apps/analytics/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/analytics/tsconfig.app.json"
+      }
     }
   }
 }

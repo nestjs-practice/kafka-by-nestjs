@@ -74,6 +74,9 @@
       "@app/board/*": [
         "apps/board/src/*"
       ],
+      "@app/analytics/*": [
+        "apps/analytics/src/*"
+      ]
     }
   }
 }

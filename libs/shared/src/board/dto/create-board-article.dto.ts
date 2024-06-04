@@ -1,6 +1,10 @@
-import { IsNotEmpty, IsString, Max } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, Max } from 'class-validator';
 
 export class CreateBoardArticleDto {
+  @IsNotEmpty()
+  @IsInt()
+  userId: number;
+
   @IsNotEmpty()
   @IsString()
   @Max(200)

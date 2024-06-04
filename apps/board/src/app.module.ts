@@ -5,14 +5,30 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from '@lib/config';
 import { BoardEntity } from '@app/board/infrastructure/entity/board.entity';
 import { BoardArticleEntity } from '@app/board/infrastructure/entity/board-article.entity';
+import { CreateBoardArticleHandler } from '@app/board/applications/board-article/commands/create-board-article/create-board-article.handler';
+import { BoardController } from '@app/board/interfaces/controller/board.controller';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { BoardRepositoryToken } from '@app/board/infrastructure/repositories/board/i.board.repository';
+import { BoardRepository } from '@app/board/infrastructure/repositories/board/board.repository';
+import { BoardArticleRepositoryToken } from '@app/board/infrastructure/repositories/board-article/i.board-article.repository';
+import { BoardArticleRepository } from '@app/board/infrastructure/repositories/board-article/board-article.repository';
 
-const controllers: Type[] = [];
+const controllers: Type[] = [BoardController];
 
-const applications: Provider[] = [];
+const applications: Provider[] = [CreateBoardArticleHandler];
 
 const interfaces: Provider[] = [];
 
-const repositories: Provider[] = [];
+const repositories: Provider[] = [
+  {
+    provide: BoardRepositoryToken,
+    useClass: BoardRepository,
+  },
+  {
+    provide: BoardArticleRepositoryToken,
+    useClass: BoardArticleRepository,
+  },
+];
 
 const events: Provider[] = [];
 
@@ -25,6 +41,21 @@ const events: Provider[] = [];
     }),
     TypeOrmModule.forRootAsync(ormConfig),
     TypeOrmModule.forFeature([BoardEntity, BoardArticleEntity]),
+    ClientsModule.register([
+      {
+        name: 'BOARD_SERVICE',
+        transport: Transport.KAFKA,
+        options: {
+          client: {
+            clientId: 'board',
+            brokers: ['localhost:9092'],
+          },
+          consumer: {
+            groupId: 'board-consumer',
+          },
+        },
+      },
+    ]),
   ],
   controllers: [...controllers],
   providers: [...applications, ...repositories, ...events, ...interfaces],

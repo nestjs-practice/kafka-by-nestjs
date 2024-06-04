@@ -1,5 +1,5 @@
-import { UserAnalytics } from '@app/user/domain/user-analytics';
-import { UserAnalyticsEntity } from '@app/user/infrastructure/entity/user-analytics.entity';
+import { UserAnalytics } from '@app/analytics/domain/user-analytics';
+import { UserAnalyticsEntity } from '@app/analytics/infrastructure/entity/user-analytics.entity';
 
 export class UserAnalyticsMapper {
   static toEntity(model: UserAnalytics) {
