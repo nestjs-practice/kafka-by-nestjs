@@ -10,8 +10,6 @@ export class UserService {
   ) {}
 
   async createUser(@Body() dto: CreateUserDto) {
-    console.log(this.client);
-    // const pattern = { cmd: 'create-user' };
     return this.client.send<{ success: boolean }>('create-user', dto);
   }
 }

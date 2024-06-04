@@ -3,7 +3,9 @@ import {
   IUserRepository,
   UserRepositoryToken,
 } from '@app/user/infrastructure/repository/user/i.user.repository';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { UserAccount } from '@app/user/domain/user-account';
+import { User } from '@app/user/domain/user';
+import { CreateUserDto } from '@lib/shared';
 
 @Injectable()
 export class CreateUserHandler {
@@ -12,14 +14,13 @@ export class CreateUserHandler {
     private readonly userRepository: IUserRepository,
   ) {}
 
-  @MessagePattern('create-user')
-  async execute(@Payload() data: any) {
-    console.log(data);
-    // const userAccount = UserAccount.empty();
-    // const userId = await this.userRepository.insertUserId(userAccount);
-    // // * user 객체 생성
-    // const user = User.create(userId, dto);
-    // await this.userRepository.upsert(user);
-    return { success: true };
+  async execute(dto: CreateUserDto) {
+    const userAccount = UserAccount.empty();
+    const userId = await this.userRepository.insertUserId(userAccount);
+    // * user 객체 생성
+    const user = User.create(userId, dto);
+    await this.userRepository.upsert(user);
+    // TODO : export용 user ro 필요
+    return user.props;
   }
 }
