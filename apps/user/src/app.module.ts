@@ -1,4 +1,4 @@
-import { Module, Provider, Type } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, Provider, Type } from '@nestjs/common';
 import { UserRepositoryToken } from '@app/user/infrastructure/repository/user/i.user.repository';
 import { UserRepository } from '@app/user/infrastructure/repository/user/user.repository';
 import { UserAccountRepositoryToken } from '@app/user/infrastructure/repository/user-account/i.user-account.repository';
@@ -13,6 +13,7 @@ import { UserSettingEntity } from '@app/user/infrastructure/entity/user-setting.
 import { UserAnalyticsEntity } from '@app/user/infrastructure/entity/user-analytics.entity';
 import { CreateUserHandler } from '@app/user/application/commands/create-user/create-user.handler';
 import { AppController } from '@app/user/interfaces/controller/app.controller';
+import { LoggerMiddleware } from '@lib/middleware';
 
 const controllers: Type[] = [AppController];
 
@@ -50,24 +51,13 @@ const events: Provider[] = [];
       UserSettingEntity,
       UserAnalyticsEntity,
     ]),
-    // ClientsModule.register([
-    //   {
-    //     name: 'USER_MICROSERVICE',
-    //     transport: Transport.KAFKA,
-    //     options: {
-    //       client: {
-    //         clientId: 'user',
-    //         brokers: ['localhost:9092'],
-    //       },
-    //       consumer: {
-    //         groupId: 'user-consumer',
-    //       },
-    //     },
-    //   },
-    // ]),
   ],
   controllers: [...controllers],
   providers: [...applications, ...repositories, ...events, ...interfaces],
   exports: [...interfaces],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

@@ -4,22 +4,16 @@ import { Logger } from '@nestjs/common';
 import { AppModule } from '@app/board/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.KAFKA,
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.TCP,
     options: {
-      client: {
-        clientId: 'board',
-        brokers: ['localhost:9092'],
-      },
-      consumer: {
-        groupId: 'board-consumer',
-      },
+      host: 'localhost',
+      port: 3002,
     },
   });
-  await app.startAllMicroservices();
-  await app.listen(3002);
-  Logger.log('BOARD-SERVICE : LISTENING ON TCP 3002PORT');
+  await app.listen().then(() => {
+    Logger.log('BOARD-SERVICE : LISTENING to TCP 3002PORT');
+  });
 }
 
 bootstrap();
